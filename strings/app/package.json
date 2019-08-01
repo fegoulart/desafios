@@ -1,0 +1,26 @@
+{
+  "name": "strings",
+  "version": "1.0.0",
+  "description": "Breaks and justifies lines of text file",
+  "main": "app.js",
+  "scripts": {
+    "start": "NODE_ENV=production pm2 start app.js",
+    "dev": "NODE_ENV=development nodemon app.js",
+    "test": "mocha --exit -R spec test/**/*",
+    "coverage": "nyc npm run test",
+    "stop": "pm2 stop app.js"
+  },
+  "author": "Fernando Luiz Goulart <fegoulart@gmail.com>",
+  "license": "Apache License 2.0",
+  "dependencies": {
+    "nodemon": "^1.19.1",
+    "pm2": "^3.5.1"
+  },
+  "devDependencies": {
+    "chai": "~4.2.0",
+    "chai-things": "^0.2.0",
+    "mocha": "~6.1.4",
+    "supertest": "~4.0.2",
+    "nyc": "^14.1.1"
+  }
+}
