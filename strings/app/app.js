@@ -5,7 +5,7 @@ let fs = require('fs');
 const readline = require('readline').createInterface({
     input: process.stdin,
     output: process.stdout
-})
+});
 
 exports.module = {
     part1BreakText: part1BreakText,
@@ -14,36 +14,35 @@ exports.module = {
     breakPhrase: breakPhrase,
     isLessOrEqualThanMax: isLessOrEqualThanMax,
     justifyLine: justifyLine
-}
+};
 
 readline.question(`Inform input file path please :`, (filePath) => {
 
-    let path = filePath || '../input/input_parte1.txt'
+    let path = filePath || '../input/input_parte1.txt';
 
-    fs.readFile('../input/input_parte1.txt', 'utf8', (err, data) => {
+    fs.readFile(path, 'utf8', (err, data) => {
         if (err) {
             throw err;
         }
-        let brokenText = part1BreakText(data, 40)
+        let brokenText = part1BreakText(data, 40);
         let justifiedText = part2JustifyText(brokenText, 40);
 
-        let fileName = filePath
+        let fileName = filePath;
         if (filePath.lastIndexOf("/") > 0) {
             fileName = filePath.substr(filePath.lastIndexOf("/") + 1)
         }
-        let outputFile1 = '../output/' + fileName + '_parte1.txt'
-        let outputFile2 = '../output/' + fileName + '_parte2.txt'
-        writeOutput(outputFile1, brokenText)
-        writeOutput(outputFile2, justifiedText)
-        console.log("\ndone")
-        console.log("check files: \n" + outputFile1 + "\n" + outputFile2)
+        let outputFile1 = '../output/' + fileName + '_parte1.txt';
+        let outputFile2 = '../output/' + fileName + '_parte2.txt';
+        writeOutput(outputFile1, brokenText);
+        writeOutput(outputFile2, justifiedText);
+        console.log("\ndone");
+        console.log("check files: \n" + outputFile1 + "\n" + outputFile2);
         readline.close()
     });
-})
+});
 
 
-
-function part1BreakText (data, maxLineLength) {
+function part1BreakText(data, maxLineLength) {
 
     if (typeof data != "string") {
         throw TypeError("Data should be a string.")
@@ -75,14 +74,11 @@ function part2JustifyText(data, maxLineLength) {
         if (i < lines.length - 1) {
             text += "\n"
         }
-
     }
-
     return text
+}
 
-};
-
-function breakText (data, maxLineLength) {
+function breakText(data, maxLineLength) {
 
     if (typeof data != "string") {
         throw TypeError("Data should be a string.")
@@ -96,7 +92,7 @@ function breakText (data, maxLineLength) {
         text += breakPhrase(phrases[i], maxLineLength);
     }
     return text
-};
+}
 
 function breakPhrase(phrase, maxLineLength) {
     let returnText = "";

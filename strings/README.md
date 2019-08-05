@@ -1,35 +1,88 @@
-# Desafio 1: Strings
+# Break Text and Justify
 
-Após ler o coding style do kernel Linux, você descobre a mágica que é
-ter linhas de código com no máximo 80 caracteres cada uma.
+This app receives a text file and a maximum line length and writes an output file with justified text.. 
 
-Assim, você decide que de hoje em diante seus e-mails enviados também
-seguirão um padrão parecido e resolve desenvolver um plugin para te ajudar
-com isso. Contudo, seu plugin aceitará no máximo 40 caracteres por linha.
+ 
+## Definitions
 
-Implemente uma função que receba:
-1. um texto qualquer
-2. um limite de comprimento
+  
 
-e seja capaz de gerar os outputs dos desafios abaixo.
+### important definitions adopted
 
-## Exemplo input
+#### default input directory
+./input
 
-`In the beginning God created the heavens and the earth. Now the earth was formless and empty, darkness was over the surface of the deep, and the Spirit of God was hovering over the waters.`
+#### default output directory
+./output 
 
-`And God said, "Let there be light," and there was light. God saw that the light was good, and he separated the light from the darkness. God called the light "day," and the darkness he called "night." And there was evening, and there was morning - the first day.`
+## Architecture
 
-O texto deve ser parametrizável e se quiser, pode utilizar um texto de input de sua preferência.
+  
 
-### Parte 1 (Básico) - limite 40 caracteres
-Você deve seguir o exemplo de output [deste arquivo](https://github.com/idwall/desafios/blob/master/strings/output_parte1.txt), onde basta o texto possuir, no máximo, 40 caracteres por linha. As palavras não podem ser quebradas no meio.
+### container
 
-### Parte 2 (Intermediário) - limite 40 caracteres
-O exemplo de output está [neste arquivo](https://github.com/idwall/desafios/blob/master/strings/output-parte2.txt), onde além de o arquivo possuir, no máximo, 40 caracteres por linha, o texto deve estar **justificado**.
+I used a default Node docker container to avoid environment issues.
 
-### Dicas
-- Existe um template para projetos em Java ;)
+### relevant modules used
+   
+#### testing
+  "chai": "~4.2.0",  
+  "mocha": "~6.1.4",  
+ 
+ 
+## Tests
 
-### Extras
+ 
+I've used chai, mocha and supertest modules.
 
-- Parametrização da quantidade de caracteres por linha.
+
+### Running tests
+
+  
+
+```
+
+npm run test
+
+```
+or
+
+
+```
+
+npm run coverage
+
+```
+  
+
+## Building the server
+
+  
+### Docker
+```
+
+docker build -t strings .
+docker create --name strings strings
+docker start strings
+
+```
+
+### Local
+
+Inside app folder:
+```
+
+npm install
+npm run start
+
+```
+
+
+## Using app
+
+### Command line interface
+```
+
+Inform input file path please : ../input/input_parte1.txt
+
+```
