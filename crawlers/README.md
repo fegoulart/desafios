@@ -1,31 +1,98 @@
-# Desafio 2: Crawlers
+# Reddit Crawler
 
-Parte do trabalho na IDwall inclui desenvolver *crawlers/scrapers* para coletar dados de websites.
-Como nós nos divertimos trabalhando, às vezes trabalhamos para nos divertir!
+This app is a web crawler that get data from https://old.reddit.com.
+It is also a Telegram Bot (@GoulartBot). 
 
-O Reddit é quase como um fórum com milhares de categorias diferentes. Com a sua conta, você pode navegar por assuntos técnicos, ver fotos de gatinhos, discutir questões de filosofia, aprender alguns life hacks e ficar por dentro das notícias do mundo todo!
+ 
+## Definitions
 
-Subreddits são como fóruns dentro do Reddit e as postagens são chamadas *threads*.
+  
 
-Para quem gosta de gatos, há o subreddit ["/r/cats"](https://www.reddit.com/r/cats) com threads contendo fotos de gatos fofinhos.
-Para *threads* sobre o Brasil, vale a pena visitar ["/r/brazil"](https://www.reddit.com/r/brazil) ou ainda ["/r/worldnews"](https://www.reddit.com/r/worldnews/).
-Um dos maiores subreddits é o "/r/AskReddit".
+### important definitions adopted
 
-Cada *thread* possui uma pontuação que, simplificando, aumenta com "up votes" (tipo um like) e é reduzida com "down votes".
+#### post relevance
+Only posts with at least 5,000 likes are considered 
 
-Sua missão é encontrar e listar as *threads* que estão bombando no Reddit naquele momento!
-Consideramos como bombando *threads* com 5000 pontos ou mais.
+#### post date
+Only posts written on or after the last 24 hours be considered 
 
-## Entrada
-- Lista com nomes de subreddits separados por ponto-e-vírgula (`;`). Ex: "askreddit;worldnews;cats"
+#### telegram chatbot
+Telegram chatbot user: @GoularBot 
 
-### Parte 1
-Gerar e imprimir uma lista contendo a pontuação, subreddit, título da thread, link para os comentários da thread e link da thread.
-Essa parte pode ser um CLI simples, desde que a formatação da impressão fique legível.
+## Architecture
 
-### Parte 2
-Construir um robô que nos envie essa lista via Telegram sempre que receber o comando `/NadaPraFazer [+ Lista de subrredits]` (ex.: `/NadaPraFazer programming;dogs;brazil`)
+  
 
-### Dicas
- - Use https://old.reddit.com/
- - Qualquer método para coletar os dados é válido. Caso não saiba por onde começar, procure por JSoup (Java), SeleniumHQ (Java), PhantomJS (Javascript) e Beautiful Soup (Python).
+### container
+
+I used a default Node docker container to avoid environment issues.
+
+### relevant modules used
+
+#### production
+  "messaging-api-telegram": "^0.7.11",  
+  "cheerio": "^1.0.0-rc.3",
+  "phantom": "6.2.0"  
+  
+#### testing
+  "chai": "~4.2.0",  
+  "mocha": "~6.1.4",  
+ 
+ 
+## Tests
+
+ 
+I've used chai, mocha and supertest modules.
+
+
+### Running tests
+
+  
+
+```
+
+npm run test
+
+```
+or
+
+
+```
+
+npm run coverage
+
+```
+  
+
+## Building the server
+
+  
+### Docker
+```
+
+docker build -t crawler .
+docker create --name crawler crawler
+docker start crawler
+
+```
+
+### Local
+
+Inside app folder:
+```
+
+npm install
+npm run start
+
+```
+
+## Interacting with telegram chatbot
+
+### Command
+Send subreddits separated by ; after /nadaprafazer command
+```
+
+/nadaprafazer cats;aww;AskReddit
+
+```
+
