@@ -15,10 +15,7 @@ const readline = require('readline').createInterface({
 
 readline.question(`Choose your subreddits (separated by ;) :`, (subreddits) => {
     const cancelableTimeout = thread.makeTimeout(config().timeout);
-
     Promise.race([thread.getThreads(subreddits), cancelableTimeout])
-
-    //return new thread.getThreads(subreddits)
         .then(function (threadsArray) {
             cancelableTimeout.cancel();
             threadsArray.forEach(function (item) {
@@ -43,7 +40,6 @@ return setIntervalAsync(
                 if (process.env.DEBUG === "messaging-api-telegram") {
                     let today = new Date();
                     let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-
                     console.log('CheckGoulartBot answer: ' + time.toString())
                 }
             })

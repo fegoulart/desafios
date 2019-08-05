@@ -69,17 +69,13 @@ function getThreads(subreddits) {
                                 numberOfCalls++;
                                 loop.next();
                             } else {
-
                                 numberOfCalls--;
-
                                 loop.break();
                             }
-
                         }, function (errorData) {
                             //console.log(errorData);
                             numberOfCalls--;
                             if (numberOfCalls <= 0) {
-                                // closeFunction()
                                 reject(errorData)
                             }
 
@@ -89,14 +85,8 @@ function getThreads(subreddits) {
                 function () {
                     if (numberOfCalls <= 0) {
                         resolve(threadsArray);
-                        //threadsArray.forEach(function (item, index) {
-                        //console.log(item.score + " - " + item.subreddit + " - " + item.title + " - " + item.threadLink + " - " + item.commentsLink);
-                        //})
-                        //readline.close()
                     }
-
                 })
-
         })
     })
 }
